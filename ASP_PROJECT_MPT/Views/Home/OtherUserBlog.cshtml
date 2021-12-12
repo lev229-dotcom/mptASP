@@ -1,0 +1,122 @@
+﻿@model BlogViewModel
+@{
+    ViewData["Title"] = "MyBlog";
+}
+<h1>@ViewData["Title"]</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login V5</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/css/main.css">
+    <!--===============================================================================================-->
+</head>
+
+
+<body style="background-color:darkturquoise">
+    <div class="limiter w-full p-t-55">
+        <div class="container-login100">
+            <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
+                <a asp-action="CreateBlog" asp-controller="ForReg">Добавить новую запись</a>
+                @*<form method="get" asp-action="Blog">
+                        <div class="form-inline form-group">
+                            <label class="control-label">Login:</label>
+                            <input type="text" name="login" class="form-control" />
+                            <input type="submit" value="@Model.BlogFilterViewModel.SelectionLogin" class="btn" />
+                        </div>
+                    </form>*@
+                <table class="table">
+                    @*<tr>
+                            <td>Id</td>
+                            <td>Заголовок</td>
+                            <td>Текст поста</td>
+                            <td>User id</td>
+                        </tr>*@
+                    @foreach (var item in Model.Posts)
+                    {
+                        <tr class="tr" style="border: 3px solid; border-radius: 10px;  border-bottom-color:white;">
+                            <td>Пользователь: @item.UserId</td>
+                        </tr>
+                        @*<tr class="tr" style="border: 3px solid; border-radius: 10px;  border-block-end-color:white;">
+                                <td>@item.Id</td>
+                            </tr>*@
+                        <tr class="tr" style="border: 3px solid; border-radius: 10px;  border-bottom-color:white; border-top-color:white">
+                            <td>Тема поста: @item.Title</td>
+                        </tr>
+                        <tr class="tr" style="border: 3px solid; border-radius: 10px;  border-bottom-color:white; border-top-color:white">
+                            <td>Текст: @item.Message</td>
+                        </tr>
+                        <tr class="tr" style="border: 3px solid; border-radius: 10px;  border-bottom-color:white;">
+                            <td>
+                                Фото: @if (item.PostImage != null)
+                                {
+                                    <img style='width:80px; height:60px' src="data:image/jpeg;base64, @(Convert.ToBase64String(item.PostImage))" />
+                                    @*<img style='width:80px; height:60px' src="data:image/jpeg;base64, @(Convert.ToBase64String(item.PostImage))" />*@
+
+                                }
+                            </td>
+                        </tr>
+                        <tr class="tr" style="border: 3px solid; border-radius: 10px;  border-bottom-color:white; border-top-color:white">
+                            <td>
+                                <a asp-action="DeletePost" asp-controller="Home" asp-route-id="@item.Id">Удалить запись</a>
+                            </td>
+                        </tr>
+                        <tr class="tr" style="border: 3px solid; border-radius: 10px;  border-block-start-color:white;">
+                            <td>
+                                <a asp-action="EditPost" asp-controller="ForReg" asp-route-id="@item.Id">Редактировать</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a></a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="dropDownSelect1"></div>
+
+    <!--===============================================================================================-->
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="js/main.js"></script>
+
+</body>
+</html>
+
+

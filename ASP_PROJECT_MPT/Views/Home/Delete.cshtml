@@ -1,0 +1,28 @@
+﻿@model ASP_PROJECT_MPT.Models.User
+@{
+    ViewBag.Title = "Удаление пользователя";
+
+
+}
+<div>
+    <dl class="dl-horizontal">
+        <dt>E-mail</dt>
+        <dd>
+            @Html.DisplayFor(model => Model.Email);
+        </dd>
+        <dt>Login</dt>
+        <dd>
+            @Html.DisplayFor(model => Model.Login);
+        </dd>
+        <dt>Password</dt>
+        <dd>
+            @Html.DisplayFor(model => Model.Password);
+        </dd>
+    </dl>
+</div>
+
+<form asp-action="Delete" asp-controller="Home">
+    <div class="form-group">
+        <input type="submit" value="Удалить" class="btn-group" />
+    </div>
+</form>

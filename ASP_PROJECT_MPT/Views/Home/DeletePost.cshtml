@@ -1,0 +1,28 @@
+﻿@model ASP_PROJECT_MPT.Models.Post
+@{
+    ViewBag.Title = "Удаление пользователя";
+
+
+}
+
+
+    <div>
+        <dl class="dl-horizontal">
+            <dt>Title</dt>
+            <dd>
+                @Html.DisplayFor(model => Model.Title);
+            </dd>
+            <dt>Message</dt>
+            <dd>
+                @Html.DisplayFor(model => Model.Message);
+            </dd>
+
+        </dl>
+    </div>
+
+    <form asp-action="DeletePost" asp-controller="Home">
+        <div class="form-group">
+            <input type="submit" value="Удалить" class="btn-group" />
+        </div>
+    </form>
+   
