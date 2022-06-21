@@ -1,0 +1,14 @@
+﻿@model ASP_PROJECT_MPT.Models.Chat
+@{
+    ViewBag.Title = "Редактирование чата";
+
+}
+<form asp-action="EditChat" asp-controller="Messenger">
+    <input type="hidden" asp-for="ChatId" />
+    <div class="form-group">
+        <input type="text" asp-for="Name" placeholder="название чата" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Изменить" class="form-control" />
+    </div>
+</form>

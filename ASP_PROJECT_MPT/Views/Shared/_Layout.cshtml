@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head >
+<head>
     <style>
         body {
             background-color: darkturquoise;
@@ -9,6 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - mptPMPT</title>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -33,10 +34,16 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="ForReg" asp-action="Blog">Posts</a>
                             </li>
                             @*<li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AddFile">AddFileг</a>
-                            </li>*@
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AddFile">AddFileг</a>
+                                </li>*@
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="ForReg" asp-action="UserHomePage">My Page</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="ForReg" asp-route-name=@User.Identity.Name asp-action="UserHomePage">MyPage</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Messenger" asp-action="ChatTable">Messenger</a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Messenger" asp-action="WebRTC">Video Chats</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="ForReg" asp-action="Logout">Logout</a>
@@ -48,12 +55,26 @@
             </div>
         </nav>
     </header>
-    <div class="container"> 
+    <div class="container">
         @*УДАЛИ КЛАСС КОНТЕЙНЕР ДЛЯ КОРРЕКТНОЙ РАБОТЫ КАРТИНОК*@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
+
+    <div class="modal" id="create-room-modal">
+        <form asp-controller="Home" asp-action="CreateRoom" class="modal-body">
+            <button type="button" class="close" onclick="closeModal()">X</button>
+            <header>Create Room</header>
+            <div>
+                <input name="name">
+            </div>
+            <footer>
+                <button>Create</button>
+            </footer>
+        </form>
+    </div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

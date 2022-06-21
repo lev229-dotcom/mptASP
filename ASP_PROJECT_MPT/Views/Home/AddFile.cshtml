@@ -10,7 +10,16 @@
 </form>
 
 <h3>Files</h3>
-@foreach(var f in Model) { 
+<div id="chatroom">
+    @foreach (var f in Model)
+    {
+        <p><img width="200" height="200" src="@Url.Content(f.Path)" /></p>
+    }
+</div>
 
-    <p><img src="@Url.Content(f.Path)"/></p>
-}
+<script>
+
+    $(chatroom).append('<p><img width="200" height="200" /></p>');
+    const downloadAnchor = $(chatroom).find('img:last');
+
+</script>

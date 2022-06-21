@@ -28,11 +28,19 @@ namespace ASP_PROJECT_MPT.Controllers
             _app = app;
         }
 
+        /// <summary>
+        /// Добавление файла
+        /// </summary>
+        /// <returns></returns>
         public IActionResult AddFile()
         {
             return View(db.Files.ToList());
         }
-
+        /// <summary>
+        /// Сохранение файла в базу данных
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> AddFile(IFormFile file)
         {
@@ -46,11 +54,19 @@ namespace ASP_PROJECT_MPT.Controllers
                 FileModel newfile = new FileModel { Name = file.FileName, Path = path};
                 db.Files.Add(newfile);
                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("AddFile");
             }
             return NotFound();
         }
-
+        /// <summary>
+        /// Список пользователей
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="login"></param>
+        /// <param name="email"></param>
+        /// <param name="page"></param>
+        /// <param name="sortOrder"></param>
+        /// <returns></returns>
         public async Task<ActionResult> Index( int? id, string login, string email, int page = 1, SortState sortOrder = SortState.IdAsc)
         {
             //ViewData["IdSort"] = sortOrder == SortState.IdAsc ? SortState.IdDesc : SortState.IdAsc;
@@ -128,7 +144,11 @@ namespace ASP_PROJECT_MPT.Controllers
 
                 return View(viewModel);
         }
-       
+       /// <summary>
+       /// Редактирование данных
+       /// </summary>
+       /// <param name="id"></param>
+       /// <returns></returns>
         public async Task<IActionResult> Edit(int? id)
         {
             if (id != null)
@@ -139,7 +159,11 @@ namespace ASP_PROJECT_MPT.Controllers
             }
             return NotFound();
         }
-       
+       /// <summary>
+       /// 
+       /// </summary>
+       /// <param name="user"></param>
+       /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Edit(User user)
         {
@@ -148,7 +172,11 @@ namespace ASP_PROJECT_MPT.Controllers
             return RedirectToAction("Index");
         }
 
-       
+       /// <summary>
+       /// Переход в блог конкретного пользователя
+       /// </summary>
+       /// <param name="login"></param>
+       /// <returns></returns>
         public async Task<IActionResult> OtherUserBlog(string login) //Тоже самое что и Index
         {
             IQueryable<Post> posts = db.Posts;
@@ -162,80 +190,78 @@ namespace ASP_PROJECT_MPT.Controllers
             };
             return View(BlogViewModel);
         }
-
-        //public async Task<ActionResult> Blog() //Тоже самое что и Index
-        //{
-        //    //var pos = db.Posts.Include(c => c.UserId);
-        //    //IQueryable<Post> Posts = db.Posts.Include(c => c.UserId);
-        //    ////if (id != null && id > 0)
-        //    //{
-        //    //    Posts = Posts.Where(p => p.UserId == id);
-        //    //}
-
-        //    //var posts = await Posts.ToListAsync();
-        //    return View(await db.Posts.ToListAsync());
-
-        //}
-
-        //public IActionResult CreateBlog()// Страница создания постов
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> CreateBlog(PostModel model)//Создание поста возврат его на страницу Blog
-        //{
-        //    //string cookievalue = _httpContextAccessor.HttpContext.Request.Cookies["IdUser"];
-
-        //         //В этом способе все посты выкладываются от имени админа (то есть от первого Id)
-        //         //if (ModelState.IsValid)
-        //         //{
-        //         // User userid = await db.Users.FirstOrDefaultAsync(u => u.Id == model.UserId);
-
-        //    // Post post = await db.Posts.Include(u => u.User).FirstOrDefaultAsync(u => u.User == model.UserId);
-
-        //    Post post = new Post { Title = model.Title, Message = model.Message }; //прописать строчку с куки 
-        //                                                                                                //скорее всего выпилить отсюда создание простов и вставить в Forregcontroller
-
-        //  //  User userId = await db.Users.FirstOrDefaultAsync(r => r.Login == );
-
-
-        //        //if (userId != null)
-        //        //     post.User = userId;
-
-
-        //        db.Posts.Add(post);
-        //        await db.SaveChangesAsync();
-
-        //        return RedirectToAction("Blog");
-        //    //}
-
-
-        //    //return RedirectToAction("Blog");
-
-
-        //    //Стандартный способ, как с Index
-        //    //db.Posts.Add(post);
-        //    //await db.SaveChangesAsync();
-        //    //return RedirectToAction("Blog");
-        //}
-
-
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             return View();
         }
-
+        /// <summary>
+        /// Создание пользователя
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Create(User user)
+        public async Task<IActionResult> Create(RegisterModel model)
         {
-            db.Users.Add(user);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+                    if (user == null)
+                    {
+                        // добавляем пользователя в бд
+                        user = new User
+                        {
+                            Email = model.Email,
+                            Password = model.Password,
+                            Login = model.Login,
+                            Date_Brith = model.Date_Brith,
+                            Last_Name = model.Last_Name,
+                            Otchestvo = model.Otchestvo,
+                            First_Name = model.First_Name
+                        };
+                        if (model.Avatar != null)
+                        {
+                            byte[] imageData = null;
+                            using (var binaryReader = new BinaryReader(model.Avatar.OpenReadStream()))
+                            {
+                                imageData = binaryReader.ReadBytes((int)model.Avatar.Length);
+                            }
+                            user.Avatar = imageData;
+                        }
+                        Role userRole = await db.Roles.FirstOrDefaultAsync(r => r.Name == "user");
+                        if (userRole != null)
+                            user.Role = userRole;
+
+                        db.Users.Add(user);
+                        await db.SaveChangesAsync();
+
+
+
+                        return RedirectToAction("Index", "Home");
+
+                    }
+                    else
+                        ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                }
+                return View(model);
+            }
+            catch(Exception)
+            {
+                return NotFound();
+            }
+            
         }
+        /// <summary>
+        /// Подьверждение удаления пользователя
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize(Roles = "admin")]
         [HttpGet]
         [ActionName("Delete")]
@@ -249,7 +275,11 @@ namespace ASP_PROJECT_MPT.Controllers
             }
             return NotFound();
         }
-
+        /// <summary>
+        /// Удаление пользователя из базы данных
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<IActionResult> Delete(int? id)
@@ -266,6 +296,11 @@ namespace ASP_PROJECT_MPT.Controllers
             }
             return NotFound();
         }
+        /// <summary>
+        /// Подтверждение удаления поста
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [ActionName("DeletePost")]
         public async Task<IActionResult> ConfirmDeletePost(int? id)
@@ -279,7 +314,11 @@ namespace ASP_PROJECT_MPT.Controllers
             return NotFound();
         }
 
-       
+       /// <summary>
+       /// Удаление поста из базу данных
+       /// </summary>
+       /// <param name="id"></param>
+       /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> DeletePost(int? id)
         {
@@ -295,7 +334,11 @@ namespace ASP_PROJECT_MPT.Controllers
             }
             return NotFound();
         }
-
+        /// <summary>
+        /// Информация о пользователе
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Details(int? id)
         {
             if (id != null)
@@ -307,7 +350,11 @@ namespace ASP_PROJECT_MPT.Controllers
             return NotFound();
         }
 
-
+        /// <summary>
+        /// Информация о пользователе
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> DetailsUser(int? id)
         {
             if (id != null)
@@ -318,7 +365,11 @@ namespace ASP_PROJECT_MPT.Controllers
             }
             return NotFound();
         }
-
+        /// <summary>
+        /// Детали блога пользователя
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         public async Task<IActionResult> DetailsUserBlog(string login)
         {
             if (login != null)

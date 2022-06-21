@@ -31,39 +31,37 @@
     <link rel="stylesheet" type="text/css" href="~/css/main.css">
     <!--===============================================================================================-->
 </head>
-                                                         @*ДЛЯ СОЗДАНИЯ ПОЛЬЗОВАТЕЛЕЙ НЕ ИСПОЬЗУТЕСЯ ЭТА СТРАНИЦА!!!!*@ 
+@*ДЛЯ СОЗДАНИЯ ПОЛЬЗОВАТЕЛЕЙ НЕ ИСПОЬЗУТЕСЯ ЭТА СТРАНИЦА!!!!*@
 <body style="background-color:darkturquoise">
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
-                <form asp-action="Register" asp-controller="ForReg" asp-antiforgery="true" class="login100-form validate-form flex-sb flex-w ">
+                <form asp-action="Create" asp-controller="Home" method="post" enctype="multipart/form-data" asp-antiforgery="true" class="login100-form validate-form flex-sb flex-w ">
                     <div class="validation" asp-validation-summary="ModelOnly"></div>
-                        <span class="login100-form-title p-b-53">
-                            Registration
-                        </span>
-                        <div class="form-group">
-                            <input type="email" asp-for="Email" placeholder="Email" class="form-control" />
-                            <span asp-validation-for="Email" />
-                        </div>
+                    <span class="login100-form-title p-b-53">
+                        Registration
+                    </span>
+                    <div class="form-group">
+                        <input type="email" asp-for="Email" placeholder="Email" class="form-control" />
+                        <span asp-validation-for="Email" />
+                    </div>
 
-                        <div class="form-group">
-                            <input type="text" asp-for="Login" placeholder="Login" class="form-control" />
-                          </div>
+                    <div class="form-group">
+                        <input type="text" asp-for="Login" placeholder="Login" class="form-control" />
+                    </div>
 
-                        <div class="form-group">
-                            <input type="password" asp-for="Password" placeholder="Введите пароль" class="form-control" />
-                            <span asp-validation-for="Password" />
-                        </div>
+                    <div class="form-group">
+                        <input type="password" asp-for="Password" placeholder="Введите пароль" class="form-control" />
+                        <span asp-validation-for="Password" />
+                    </div>
 
-                    @*ДИВ ДЛЯ ПОВТОРА ПАРОЛЯ УЖАСЕН*@
-                        <div class="form-group">
-                            <input type="password" asp-for="ConfirmPassword" placeholder="Повторите пароль" class="form-control" />
-                            <span asp-validation-for="ConfirmPassword" />
-                        </div>
+                    <div class="form-group">
+                        <input type="password" asp-for="ConfirmPassword" placeholder="Повторите пароль" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" />
+                    </div>
 
-                        
-                    @* по идеее то что снизу надо впихнуть в этот див (раньше тут был див :( ) *@
-                  
+
+
 
                     <div class="form-group">
                         <input type="text" asp-for="First_Name" placeholder="Имя" class="form-control" />
@@ -77,17 +75,21 @@
                     <div class="form-group">
                         <input type="text" asp-for="Otchestvo" placeholder="Отчество" class="form-control" />
                     </div>
-                    
-                    <div class="form-group">
-                        <input type="text" asp-for="Image" placeholder="Аватарка" class="form-control" />
-                    </div>
+
+                   
 
                     <div class="form-group">
-                        <input type="datetime" asp-for="Date_Brith" placeholder="Дата Рождения" class="form-control" />
+
+                        <input type="file" asp-for="Avatar" class="form-control" multiple />
+
                     </div>
+
+                    @*<div class="form-group">
+                            <input type="datetime" asp-for="Date_Brith" placeholder="Дата Рождения" class="form-control" />
+                        </div>*@
 
                     <div class="container-login100-form-btn m-t-17">
-                        <button class="login100-form-btn" asp-action="Registration" asp-controller="ForReg">
+                        <button class="login100-form-btn" asp-action="Create" asp-controller="Home" method="post" enctype="multipart/form-data">
                             Create
                         </button>
                     </div>

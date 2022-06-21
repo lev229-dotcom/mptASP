@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace ASP_PROJECT_MPT.Models
 {
-    public class User
+    public class User 
     {
         
         public int Id { get; set; }
@@ -21,16 +20,22 @@ namespace ASP_PROJECT_MPT.Models
         public string Description { get; set; }
         public String Date_Brith { get; set; }
         public string Image { get; set; }
-        public byte[] Avatar { get; set; } 
+        public byte[] Avatar { get; set; }
+        public int Code { get; set; }
+
 
         public int? RoleId { get; set; } // не может быть равен null
         public Role Role { get; set; }
 
         public List<Post> Posts { get; set; }
-        public User()
+        public User() 
         {
             Posts = new List<Post>();
+            
         }
+
+       
+       
 
     }
 

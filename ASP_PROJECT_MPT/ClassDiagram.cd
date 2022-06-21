@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ASP_PROJECT_MPT.Models.Chat">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAQAAAAQ=</HashCode>
+      <FileName>Models\Chat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ASP_PROJECT_MPT.Models.Message">
+    <Position X="14.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAQAAAAAAAACAAAAAAAAABgAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\Message.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ASP_PROJECT_MPT.Controllers.ForRegController">
+    <Position X="0.5" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAABABAABAAAAAAAAAcANgQAAAEACAQAAAAECAA=</HashCode>
+      <FileName>Controllers\ForRegController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ASP_PROJECT_MPT.Controllers.HomeController">
+    <Position X="0.5" Y="7.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIBARAAIAAAAAABAAAEECAEACAAEgAgBAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ASP_PROJECT_MPT.Controllers.MessengerController">
+    <Position X="7.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAALAABAAAACAAAAAAAACIAAiAGAAACABAAAA=</HashCode>
+      <FileName>Controllers\MessengerController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ASP_PROJECT_MPT.Hubs.WebRTCHub">
+    <Position X="13.75" Y="9" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAgEEAACgAACAAABAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Hubs\WebRTCHub.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ASP_PROJECT_MPT.Hubs.RoomManager">
+    <Position X="15.75" Y="5.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIKAAAAAAAAAAAAAAAAAAAAEEA=</HashCode>
+      <FileName>Hubs\WebRTCHub.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ASP_PROJECT_MPT.Hubs.RoomInfo">
+    <Position X="19.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAEAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Hubs\WebRTCHub.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ASP_PROJECT_MPT.Models.Post">
+    <Position X="4.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAAEAAAAAAAAgAAAAAABAAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\Post.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ASP_PROJECT_MPT.Models.User">
+    <Position X="6.75" Y="9.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAIAACAgAAAAFQQgAAABAAAAARACAABQAAAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ASP_PROJECT_MPT.Models.ResetPasswordViewModel">
+    <Position X="4.5" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAgAAAAAAAAAAACAAAAAAAAIAA=</HashCode>
+      <FileName>Models\ResetPasswordViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ASP_PROJECT_MPT.Models.MessageViewModel">
+    <Position X="16.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Models\MessageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ASP_PROJECT_MPT.Models.RegisterModel">
+    <Position X="4.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAgAAAAAQQAAAABAAAAARACAABQAAAAIAA=</HashCode>
+      <FileName>Models\RegisterModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ASP_PROJECT_MPT.Startup">
+    <Position X="9.75" Y="6" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAACAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ASP_PROJECT_MPT.ChatHub">
+    <Position X="10" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAQAAABAABAgAAEIAAAAAgAAEAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>ChatHub.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ASP_PROJECT_MPT.Program">
+    <Position X="17.25" Y="9.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

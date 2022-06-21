@@ -84,7 +84,7 @@
 
                     <div class="p-t-13 p-b-9">
                         <span class="txt1">
-                            Ava
+                           Image
                         </span>
                     </div>
 
@@ -117,33 +117,31 @@
 
                     <div class="p-t-13 p-b-9">
                         <span class="txt1">
-                            Fisrt name
+                            Last name
                         </span>
                     </div>
-                    <div class="wrap-input100 validate-input" data-validate="Фамилия is required">
-                        <input class="input100" type="text" asp-for="Last_Name">
-                        <span class="focus-input100"></span>
+                    <div class="form-group" data-validate="Фамилия is required">
+                        <input  type="text" asp-for="Last_Name" placeholder="Фамилия" class="form-control">
                     </div>
 
                     <div class="p-t-13 p-b-9">
                         <span class="txt1">
-                            Last Name
+                            Otchestvo
                         </span>
                     </div>
-                    <div class="wrap-input100 validate-input">
-                        <input class="input100" type="text" asp-for="Otchestvo">
-                        <span class="focus-input100"></span>
+                    <div class="form-group">
+                        <input  type="text" asp-for="Otchestvo" placeholder="Отчество" class="form-control">
                     </div>
 
-                    <div class="p-t-13 p-b-9">
+                    @*<div class="p-t-13 p-b-9">
                         <span class="txt1">
                             Date birth
                         </span>
-                    </div>
-                    <div class="wrap-input100 validate-input" data-validate="Фамилия is required">
+                    </div>*@
+                    @*<div class="wrap-input100 validate-input" data-validate="Фамилия is required">
                         <input class="input100" type="datetime" asp-for="Date_Brith">
                         <span class="focus-input100"></span>
-                    </div>
+                    </div>*@
 
                     <div class="container-login100-form-btn m-t-17">
                         <button class="login100-form-btn" type="submit" asp-action="Registration" asp-controller="ForReg" method="post" enctype="multipart/form-data">

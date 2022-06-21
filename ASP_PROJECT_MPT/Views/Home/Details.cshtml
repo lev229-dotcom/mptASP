@@ -41,11 +41,24 @@
                         <h4>User</h4>
                         <hr />
                         <dl class="row">
-                            <dt class="col-sm-2">
+                            @*<dt class="col-sm-2">
                                 @Html.DisplayNameFor(model => model.Id)
                             </dt>
                             <dd class="col-sm-10">
                                 @Html.DisplayFor(model => model.Id)
+                            </dd>*@
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Avatar)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @if (Model.Avatar != null)
+                                {
+                                    <img style='width:80px; height:60px' src="data:image/jpeg;base64, @(Convert.ToBase64String(Model.Avatar))" />
+                                }
+                                else
+                                {
+                                    <img style='width:80px; height:60px' src="~/Files/ya-logo-2020-02-1-900x506 (1).png" />
+                                }
                             </dd>
                             <dt class="col-sm-2">
                                 @Html.DisplayNameFor(model => model.Email)
@@ -59,12 +72,12 @@
                             <dd class="col-sm-10">
                                 @Html.DisplayFor(model => model.Login)
                             </dd>
-                            <dt class="col-sm-2">
-                                @Html.DisplayNameFor(model => model.Password)
-                            </dt>
-                            <dd class="col-sm-10">
-                                @Html.DisplayFor(model => model.Password)
-                            </dd>
+                            @*<dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Password)
+            </dd>*@
 
 
                             <dt class="col-sm-2">
@@ -85,34 +98,37 @@
                             <dd class="col-sm-10">
                                 @Html.DisplayFor(model => model.Otchestvo)
                             </dd>
-                            <dt class="col-sm-2">
-                                @Html.DisplayNameFor(model => model.Description)
-                            </dt>
-                            <dd class="col-sm-10">
-                                @Html.DisplayFor(model => model.Description)
-                            </dd>
-                            <dt class="col-sm-2">
-                                @Html.DisplayNameFor(model => model.Date_Brith)
-                            </dt>
-                            <dd class="col-sm-10">
-                                @Html.DisplayFor(model => model.Date_Brith)
-                            </dd>
                             @*<dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Image)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Image)
-                </dd>*@
-                            <dt class="col-sm-2">
-                                @Html.DisplayNameFor(model => model.RoleId)
-                            </dt>
-                            <dd class="col-sm-10">
-                                @Html.DisplayFor(model => model.RoleId)
-                            </dd>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>*@
+                            @*<dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Date_Brith)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Date_Brith)
+            </dd>*@
+
+                            @*<dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Image)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Image)
+            </dd>*@
+                            @*<dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.RoleId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.RoleId)
+            </dd>*@
                         </dl>
+
                     </div>
                     <div>
-                        @Html.ActionLink("Посты данного пользователя", "OtherUserBlog", new { login = Model.Login })|
+                        @Html.ActionLink("Посты данного пользователя", "OtherUserBlog", new { login = Model.Login })|       
+                        @Html.ActionLink("Написать сообщение данному пользователю", "MesBeg","ForReg", new { id = Model.Id })|
                         @if (User.IsInRole("admin"))
                         {
                             @Html.ActionLink("Edit", "Edit", new { id = Model.Id })

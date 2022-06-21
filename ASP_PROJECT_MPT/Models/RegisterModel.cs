@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace ASP_PROJECT_MPT.Models
 {
@@ -22,7 +20,6 @@ namespace ASP_PROJECT_MPT.Models
         public string Login { get; set; }
 
         public IFormFile Avatar { get; set; }
-        //ДИВ ДЛЯ ПОВТОРА ПАРОЛЯ ПОКА НЕ ЗАМОРОЖЕН (Create.cshtml)
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Пароль введен неверно")]
         public string ConfirmPassword { get; set; }
